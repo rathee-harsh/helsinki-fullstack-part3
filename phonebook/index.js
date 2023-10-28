@@ -6,6 +6,11 @@ const app = express()
 
 app.use(express.json())
 app.use(morgan('tiny'))
+app.use(morgan(function (tokens, req, res) {
+    if (req.method == "POST") {
+        console.log(JSON.stringify(req.body))
+    }
+}))
 
 let persons = [
     {
